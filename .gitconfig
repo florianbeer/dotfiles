@@ -1,0 +1,32 @@
+[user]
+	name = Florian Beer
+	email = fb@42dev.eu
+[core]
+	quotepath = false
+	excludesfile = ~/.gitignore
+	pager = cat
+[color]
+	ui = auto
+[color "branch"]
+	current = green reverse
+	local = green
+	remote = yellow
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+[alias]
+	lg = log --pretty=tformat:'%Cred%h%Creset -%Cblue%d%Creset %s %Cgreen(%cr)%Creset %C(yellow)<%an>%Creset' --abbrev-commit --date=relative --reverse
+	graph = log --graph --pretty=tformat':%C(yellow)%h%Cblue%d%Creset %s %C(white) <%an>, %ar%Creset'
+	latest = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname:short) [%(committername)]'
+	amend = commit --amend -C HEAD
+	undo = reset --soft HEAD
+[push]
+	default = tracking
+[branch]
+  autosetupmerge = true

@@ -1,0 +1,24 @@
+all: install
+
+install:
+		cp .bash_profile ../
+		cp .bash_ps1 ../
+		cp .gitconfig ../
+		cp .gitignore ../
+		cp -rf tmux-powerline ../bin/.
+		cp -rf .tmux-poweline ../
+		cp .tmux-powerlinerc ../
+		cp .tmux.conf ../
+		cp -rf .vim ../
+		cp .vimrc ../
+
+update:
+		cp ~/.bash_profile .
+		cp ~/.bash_ps1 .
+		cp ~/.gitconfig .
+		cp ~/.gitignore .
+		cp -rf ~/.tmux-powerline .
+		cp ~/.tmux-powerlinerc .
+		cp ~/.tmux.conf .
+		cp -rf ~/.vim .
+		cp ~/.vimrc .
