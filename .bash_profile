@@ -29,21 +29,31 @@ if [ "$(uname)" == "Darwin" ]; then
   alias top='top -o cpu'
   alias talk='cat - | while read cat; do say $cat; done'
 
+  export CLICOLOR=true
+  export LSCOLORS=ExGxFxdxCxDxDxBxBxExEx
+
   # command prompt
   PS1='\[$(tput setaf 2)\]\h: \W\[$(tput setaf 3)\]$(__git_ps1 " (%s)")\[$(tput setaf 2)\] \342\226\270 \[$(tput sgr0)\]'
 
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
-  export LS_OPTIONS='--color=auto '
-  PS1='[\[\e[31m\]${debian_chroot:+($debian_chroot)}\u@\h:\[\e[0m\]\w]\$ '
+  LS_COLORS=$(eval `dircolors`)
+  export LS_COLORS
+
+  if [ $(id -u) -eq 0 ]; then
+    COL=1
+  else
+    COL=2
+  fi
+  PS1='\[$(tput setaf ${COL})\]\h: \W\[$(tput setaf 3)\]$(__git_ps1 " (%s)")\[$(tput setaf 2)\] \342\226\270 \[$(tput sgr0)\]'
+
+  #PS1='[\[\e[31m\]${debian_chroot:+($debian_chroot)}\u@\h:\[\e[0m\]\w]\$ '
 
 fi
 
 # some settings to be more colorful
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 export LESS=-R
-export CLICOLOR=true
-export LSCOLORS=ExGxFxdxCxDxDxBxBxExEx
 
 #man pages
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -56,7 +66,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 # handy aliases
 alias ll='ls -lh'
-alias la='ls -lA'
+alias la='ls -lhA'
 export LC_ALL='en_US.UTF-8'
 
 export HISTCONTROL=ignoredups
