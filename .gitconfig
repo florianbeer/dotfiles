@@ -26,6 +26,9 @@
 	latest = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname:short) [%(committername)]'
 	amend = commit --amend -C HEAD
 	undo = reset --soft HEAD
+  hide = update-index --assume-unchanged
+  unhide = update-index --no-assume-unchanged
+  s = status -sb
 [push]
 	default = tracking
 [branch]

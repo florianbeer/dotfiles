@@ -1,5 +1,5 @@
 " Colors
-colorscheme twilight256
+colorscheme atom-dark-256
 set background=dark
 syntax enable
 
@@ -11,13 +11,14 @@ set ttimeout
 set ttimeoutlen=100
 set scrolloff=1
 set autoread
+set virtualedit+=onemore
 
 " Tabs and Spaces
 set tabstop=2
-set expandtab
 set softtabstop=2
 set shiftwidth=2
 set smarttab
+set expandtab
 filetype plugin indent on
 
 " UI Layout
@@ -50,14 +51,19 @@ augroup configgroup
         \ if line("'\"") > 1 && line("'\"") <= line("$") |
         \   exe "normal! g`\"" |
         \ endif
-  autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md :call <SID>StripTrailingWhitespaces()
-  autocmd Filetype gitcommit setlocal spell textwidth=72
-  autocmd BufNewFile,BufRead *.json set ft=javascript
-  autocmd BufNewFile,BufRead *.md set ft=markdown spell
+  au BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md :call <SID>StripTrailingWhitespaces()
+  au Filetype gitcommit setlocal spell textwidth=72
+  au BufNewFile,BufRead *.json set ft=javascript
+  au BufNewFile,BufRead *.md set ft=markdown spell
+  "au FileType php set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79 expandtab
 augroup END
 
 " Save file with sudo
 cnoremap w!! w !sudo tee % >/dev/null
+
+" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 " Keep visual selection on indent
 vnoremap < <gv
@@ -75,6 +81,15 @@ nnoremap k gk
 
 " highlight last inserted text
 nnoremap gV `[v`]
+
+" Map Ctrl-J to insert line break (opposite of J)
+nnoremap <NL> i<CR><ESC>
+
+" Remap Q to disable search highlighting
+nnoremap Q :nohlsearch<CR>
+
+" Hit CTRL Space to insert word under cursor in search
+cmap <Nul> <C-R><C-W>
 
 " allows cursor change in tmux mode
 if exists('$TMUX')
