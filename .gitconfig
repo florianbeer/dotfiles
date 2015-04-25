@@ -24,11 +24,14 @@
 	lg = log --pretty=tformat:'%Cred%h%Creset -%Cblue%d%Creset %s %Cgreen(%cr)%Creset %C(yellow)<%an>%Creset' --abbrev-commit --date=relative --reverse
 	graph = log --graph --pretty=tformat':%C(yellow)%h%Cblue%d%Creset %s %C(white) <%an>, %ar%Creset'
 	latest = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname:short) [%(committername)]'
-	amend = commit --amend -C HEAD
+  amend = commit --amend --reuse-message=HEAD
 	undo = reset --soft HEAD
   hide = update-index --assume-unchanged
   unhide = update-index --no-assume-unchanged
   s = status -sb
+  contributors = shortlog --summary --numbered
+  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+  retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
 [push]
 	default = tracking
 [branch]
