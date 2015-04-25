@@ -3,6 +3,7 @@ all: install
 install:
 		cp .bashrc ../
 		cp .bash_profile ../
+		cp .inputrc ../
 		cp .gitconfig ../
 		cp .gitignore ../
 		cp -rf .tmux-powerline ../
