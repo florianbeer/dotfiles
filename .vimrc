@@ -60,6 +60,7 @@ augroup configgroup
   au Filetype gitcommit setlocal spell textwidth=72
   au BufNewFile,BufRead *.json set ft=javascript
   au BufNewFile,BufRead *.md set ft=markdown spell
+  autocmd BufRead,BufNewFile *.blade.php set filetype=html
   autocmd FileType css,scss,sass setlocal iskeyword+=-
   "au FileType php set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79 expandtab
 augroup END
