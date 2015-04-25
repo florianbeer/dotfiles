@@ -12,3 +12,4 @@ install:
 		cp .tmux-macosx ../
 		cp -rf .vim ../
 		cp .vimrc ../
+		cp .wgetrc ../
