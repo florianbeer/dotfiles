@@ -50,10 +50,10 @@ else # OS X `ls`
 fi
 
 # List all files colorized in long format
-alias ll="ls -la ${colorflag}"
+alias ll="ls -lh ${colorflag}"
 
 # List all files colorized in long format, including dot files
-alias la="ls -laF ${colorflag}"
+alias la="ls -lah ${colorflag}"
 
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
