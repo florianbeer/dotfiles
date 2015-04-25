@@ -1,6 +1,7 @@
 all: install
 
 install:
+		cp .bashrc ../
 		cp .bash_profile ../
 		cp .gitconfig ../
 		cp .gitignore ../
