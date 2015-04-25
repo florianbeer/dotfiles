@@ -25,31 +25,34 @@ if [ "$(uname)" == "Darwin" ]; then
       fi
   }
 
-  # OS X specific aliases
-  alias top='top -o cpu'
-  alias talk='cat - | while read cat; do say $cat; done'
-
+  # aliases
   export CLICOLOR=true
   export LSCOLORS=ExGxFxdxCxDxDxBxBxExEx
+  alias ll='ls -lh'
+  alias la='ls -lhA'
+  alias top='top -o cpu'
+  alias talk='cat - | while read cat; do say $cat; done'
 
   # command prompt
   PS1='\[$(tput setaf 2)\]\h: \W\[$(tput setaf 3)\]$(__git_ps1 " (%s)")\[$(tput setaf 2)\] \342\226\270 \[$(tput sgr0)\]'
 
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
+  # aliases
   LS_COLORS=$(eval `dircolors`)
   export LS_COLORS
-
-  if [ $(id -u) -eq 0 ]; then
-    COL=1
-  else
-    COL=2
-  fi
-  PS1='\[$(tput setaf ${COL})\]\h: \W\[$(tput setaf 3)\]$(__git_ps1 " (%s)")\[$(tput setaf 2)\] \342\226\270 \[$(tput sgr0)\]'
-
-  #PS1='[\[\e[31m\]${debian_chroot:+($debian_chroot)}\u@\h:\[\e[0m\]\w]\$ '
-
+  alias ll='ls -lh --color=auto'
+  alias la='ls -lhA --color=auto'
+  
 fi
+
+# bash prompt
+if [ $(id -u) -eq 0 ]; then
+  COL=1
+else
+  COL=2
+fi
+PS1='\[$(tput setaf ${COL})\]\h: \W\[$(tput setaf 3)\]$(__git_ps1 " (%s)")\[$(tput setaf 2)\] \342\226\270 \[$(tput sgr0)\]'
 
 # some settings to be more colorful
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
@@ -64,11 +67,8 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-# handy aliases
-alias ll='ls -lh'
-alias la='ls -lhA'
+# set some defaults
 export LC_ALL='en_US.UTF-8'
-
 export HISTCONTROL=ignoredups
 export HISTSIZE=10000
 export EDITOR=vim
