@@ -33,9 +33,6 @@ if [ "$(uname)" == "Darwin" ]; then
   alias top='top -o cpu'
   alias talk='cat - | while read cat; do say $cat; done'
 
-  # command prompt
-  PS1='\[$(tput setaf 2)\]\h: \W\[$(tput setaf 3)\]$(__git_ps1 " (%s)")\[$(tput setaf 2)\] \342\226\270 \[$(tput sgr0)\]'
-
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
   # aliases
@@ -49,10 +46,10 @@ fi
 # bash prompt
 if [ $(id -u) -eq 0 ]; then
   COL=1
-  PRMPT="\342\230\240"
+  PRMPT=\342\230\240
 else
   COL=2
-  PRMPT="\342\226\270"
+  PRMPT=\342\226\270
 fi
 PS1='\[$(tput setaf ${COL})\]\h: \W\[$(tput setaf 3)\]$(__git_ps1 " (%s)")\[$(tput setaf ${COL})\] ${PRMPT} \[$(tput sgr0)\]'
 
