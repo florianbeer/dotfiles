@@ -52,9 +52,9 @@ augroup configgroup
   " When editing a file, always jump to the last known cursor position. Don't
   " do it for commit messages, when the position is invalid, or when inside an
   " event handler (happens when dropping a file on gvim).
-  autocmd vimrc BufReadPost *
+  autocmd BufReadPost *
     \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
+    \   exe "normal! g`\"" |
     \ endif
   au BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md :call <SID>StripTrailingWhitespaces()
   au Filetype gitcommit setlocal spell textwidth=72
