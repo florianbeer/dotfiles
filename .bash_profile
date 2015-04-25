@@ -46,12 +46,10 @@ fi
 # bash prompt
 if [ $(id -u) -eq 0 ]; then
   COL=1
-  PRMPT=\342\230\240
 else
   COL=2
-  PRMPT=\342\226\270
 fi
-PS1='\[$(tput setaf ${COL})\]\h: \W\[$(tput setaf 3)\]$(__git_ps1 " (%s)")\[$(tput setaf ${COL})\] ${PRMPT} \[$(tput sgr0)\]'
+PS1='\[$(tput setaf ${COL})\]\h: \W\[$(tput setaf 3)\]$(__git_ps1 " (%s)")\[$(tput setaf ${COL})\] \342\226\270 \[$(tput sgr0)\]'
 
 # some settings to be more colorful
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
