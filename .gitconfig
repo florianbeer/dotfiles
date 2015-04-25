@@ -1,6 +1,3 @@
-[user]
-	name = Florian Beer
-	email = fb@42dev.eu
 [core]
 	quotepath = false
 	excludesfile = ~/.gitignore
@@ -36,3 +33,5 @@
 	default = tracking
 [branch]
   autosetupmerge = true
+[include]
+    path = ~/.gitconfig.local
