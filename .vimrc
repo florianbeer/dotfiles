@@ -12,6 +12,9 @@ set ttimeoutlen=100
 set scrolloff=1
 set autoread
 set virtualedit+=onemore
+set shortmess+=I " Hide intro menu
+set splitbelow " New split goes below
+set splitright " New split goes right
 
 " Tabs and Spaces
 set tabstop=2
@@ -46,11 +49,13 @@ set writebackup
 
 " Filetypes
 augroup configgroup
-  " When editing a file, always jump to the last known cursor position.
-  autocmd BufReadPost *
-        \ if line("'\"") > 1 && line("'\"") <= line("$") |
-        \   exe "normal! g`\"" |
-        \ endif
+  " When editing a file, always jump to the last known cursor position. Don't
+  " do it for commit messages, when the position is invalid, or when inside an
+  " event handler (happens when dropping a file on gvim).
+  autocmd vimrc BufReadPost *
+    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
   au BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md :call <SID>StripTrailingWhitespaces()
   au Filetype gitcommit setlocal spell textwidth=72
   au BufNewFile,BufRead *.json set ft=javascript
