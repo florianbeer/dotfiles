@@ -27,8 +27,8 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 PATH="/usr/local/bin:$PATH"
 
 # put ~/bin first on PATH
-if [ -d "~/bin" ]; then
-    PATH="~/bin:$PATH"
+if [ -d "$HOME/bin" ]; then
+    PATH="$HOME/bin:$PATH"
 fi
 
 # ----------------------------------------------------------------------------
@@ -130,6 +130,17 @@ export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
+
+# grc
+GRC=`which grc`
+if [ "$TERM" != dumb ] && [ -n "$GRC" ] 
+    then
+        alias colourify="$GRC -es --colour=auto"
+        alias configure='colourify ./configure' 
+        for app in {diff,make,gcc,g++,mtr,ping,traceroute,netstat,traceroute,head,tail,dig,mount,ps,mtr,df}; do
+            alias "$app"='colourify '$app
+        done
+fi
 
 # ----------------------------------------------------------------------------
 # FUNCTIONS
