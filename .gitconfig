@@ -33,5 +33,7 @@
 	default = tracking
 [branch]
   autosetupmerge = true
+[credential] 
+    helper = osxkeychain
 [include]
     path = ~/.gitconfig.local
