@@ -47,6 +47,12 @@ set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 
+" Undo
+set undodir=~/.vim/undodir
+set undofile
+set undolevels=1000
+set undoreload=10000
+
 " Filetypes
 augroup configgroup
   " When editing a file, always jump to the last known cursor position. Don't
@@ -91,6 +97,9 @@ nnoremap gV `[v`]
 
 " Map Ctrl-J to insert line break (opposite of J)
 nnoremap <NL> i<CR><ESC>
+
+" Map ESP to jj
+:imap jj <ESC>
 
 " Remap Q to disable search highlighting
 nnoremap Q :nohlsearch<CR>
