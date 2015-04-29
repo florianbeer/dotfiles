@@ -53,8 +53,8 @@ export EDITOR
 
 # pager
 if [ -n "$(command -v less)" ]; then
-    PAGER="less -FirSwX"
-    MANPAGER="less -FiRswX"
+    PAGER="less -FirSw"
+    MANPAGER="less -FiRsw"
 else
     PAGER=more
     MANPAGER="$PAGER"
