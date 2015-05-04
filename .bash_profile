@@ -22,6 +22,8 @@ umask 0022
 # PATH
 # ----------------------------------------------------------------------------
 
+CDPATH=.:$HOME/Sites
+
 # we want the various sbins on the path along with /usr/local/bin
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 PATH="/usr/local/bin:$PATH"
@@ -86,8 +88,8 @@ PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -
 # ----------------------------------------------------------------------------
 
 # use brew bash-completion when on OS X otherwhise use linux variant
-if which brew > /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
-  source "$(brew --prefix)/share/bash-completion/bash_completion";
+if which brew > /dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+  source "$(brew --prefix)/etc/bash_completion";
 elif [ -f /etc/bash_completion ]; then
   source /etc/bash_completion;
 fi;
