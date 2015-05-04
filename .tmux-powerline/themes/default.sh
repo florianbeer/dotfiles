@@ -27,7 +27,7 @@ if [ -z $TMUX_POWERLINE_LEFT_STATUS_SEGMENTS ]; then
 		#"hostname 33 0" \
 		#"ifstat 30 255" \
 		#"ifstat_sys 30 255" \
-		"lan_ip 24 234 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}" \
+		"lan_ip 234 24 ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD}" \
 		"wan_ip 24 234" \
 		"vcs_branch 239 255" \
 		"vcs_compare 60 255" \
