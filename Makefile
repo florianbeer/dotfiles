@@ -15,3 +15,4 @@ install :
 		install -v -C -m 0644 -- .tmux-macosx "$(HOME)"/.tmux-macosx
 		install -v -C -m 0644 -- .vimrc "$(HOME)"/.vimrc
 		install -v -C -m 0644 -- .wgetrc "$(HOME)"/.wgetrc
+		install -v -C -m 0644 -- .ackrc "$(HOME)"/.ackrc
