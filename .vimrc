@@ -1,3 +1,21 @@
+" Vundle
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-fugitive'
+Plugin 'mileszs/ack.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'editorconfig/editorconfig-vim'
+call vundle#end()
+
+" ack-vim
+let g:ackhighlight = 1
+let g:ack_default_options = " -s -H --smart-case --follow"
+
 " Colors
 colorscheme atom-dark-256
 set background=dark
@@ -15,6 +33,8 @@ set virtualedit+=onemore
 set shortmess+=I " Hide intro menu
 set splitbelow " New split goes below
 set splitright " New split goes right
+set spelllang=en,de
+let mapleader = ","
 
 " Tabs and Spaces
 set tabstop=2
@@ -63,12 +83,13 @@ augroup configgroup
     \   exe "normal! g`\"" |
     \ endif
   au BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md :call <SID>StripTrailingWhitespaces()
+  " Set up comment style for PHP
+  autocmd FileType php setlocal commentstring=//\ %s
   au Filetype gitcommit setlocal spell textwidth=72
   au BufNewFile,BufRead *.json set ft=javascript
   au BufNewFile,BufRead *.md set ft=markdown spell
   autocmd BufRead,BufNewFile *.blade.php set filetype=html
   autocmd FileType css,scss,sass setlocal iskeyword+=-
-  "au FileType php set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79 expandtab
 augroup END
 
 " Save file with sudo
@@ -98,14 +119,17 @@ nnoremap gV `[v`]
 " Map Ctrl-J to insert line break (opposite of J)
 nnoremap <NL> i<CR><ESC>
 
-" Map ESP to jj
-:imap jj <ESC>
+" Map ESC to jk
+:imap jk <ESC>
 
 " Remap Q to disable search highlighting
 nnoremap Q :nohlsearch<CR>
 
 " Hit CTRL Space to insert word under cursor in search
 cmap <Nul> <C-R><C-W>
+
+" Paste from clipboard in paste mode
+map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 
 " allows cursor change in tmux mode
 if exists('$TMUX')
@@ -125,3 +149,4 @@ function! <SID>StripTrailingWhitespaces()
   let @/=_s
   call cursor(l, c)
 endfunction
+

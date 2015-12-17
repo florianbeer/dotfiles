@@ -28,6 +28,12 @@ CDPATH=.:$HOME/Sites
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 PATH="/usr/local/bin:$PATH"
 
+# LaTeX
+PATH="/usr/texbin:$PATH"
+
+# Composer
+PATH="$HOME/.composer/vendor/bin/:$PATH"
+
 # put ~/bin first on PATH
 if [ -d "$HOME/bin" ]; then
     PATH="$HOME/bin:$PATH"
@@ -46,8 +52,10 @@ export LANG LANGUAGE LC_CTYPE LC_ALL
 
 # history stuff
 HISTCONTROL=ignoreboth
-HISTFILESIZE=100000
-HISTSIZE=100000
+if [ "$(uname)" != "Darwin" ]; then
+  HISTFILESIZE=100000
+  HISTSIZE=100000
+fi
 
 # this is important!
 EDITOR=vim
@@ -139,7 +147,7 @@ if [ "$TERM" != dumb ] && [ -n "$GRC" ]
     then
         alias colourify="$GRC -es --colour=auto"
         alias configure='colourify ./configure' 
-        for app in {diff,make,gcc,g++,mtr,ping,traceroute,netstat,traceroute,head,tail,dig,mount,ps,mtr,df}; do
+        for app in {diff,make,gcc,g++,mtr,traceroute,netstat,traceroute,head,tail,dig,mount,ps,mtr,df}; do
             alias "$app"='colourify '$app
         done
 fi
@@ -176,11 +184,6 @@ if [ "$(uname)" == "Darwin" ]; then
     source /usr/local/git/contrib/completion/git-prompt.sh
   fi
 
-  # activate local Ansible installation
-  if [[ -f ~/Applications/ansible/hacking/env-setup ]]; then
-    source ~/Applications/ansible/hacking/env-setup >& /dev/null
-  fi
-
   # check if host is up and announce through text-to-speech
   hostup() {
       if (( $# != 1 )); then
@@ -194,3 +197,5 @@ if [ "$(uname)" == "Darwin" ]; then
   alias top='top -o cpu'
   alias talk='cat - | while read cat; do say $cat; done'
 fi
+
+ulimit -n 2560
