@@ -68,10 +68,15 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 
 " Undo
-set undodir=~/.vim/undodir
-set undofile
-set undolevels=1000
-set undoreload=10000
+if exists("+undofile")
+	if isdirectory($HOME . '/.vim/undodir') == 0
+		:silent !mkdir -p ~/.vim/undodir > /dev/null 2>&1
+	endif
+	set undodir=~/.vim/undodir//
+	set undofile
+	set undolevels=5000
+	set undoreload=10000
+endif
 
 " Filetypes
 augroup configgroup
