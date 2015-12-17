@@ -25,8 +25,7 @@ umask 0022
 CDPATH=.:$HOME/Sites
 
 # we want the various sbins on the path along with /usr/local/bin
-PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
-PATH="/usr/local/bin:$PATH"
+PATH="$PATH:/usr/local/sbin:/usr/sbin"
 
 # LaTeX
 PATH="/usr/texbin:$PATH"
