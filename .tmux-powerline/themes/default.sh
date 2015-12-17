@@ -42,7 +42,7 @@ if [ -z $TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS ]; then
 		#"earthquake 3 0" \
 		#"pwd 89 211" \
 		#"mailcount 239 255" \
-		"now_playing 234 24" \
+		#"now_playing 234 24" \
 		#"cpu 240 136" \
 		#"load 237 167" \
 		#"tmux_mem_cpu_load 234 136" \
