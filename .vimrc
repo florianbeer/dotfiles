@@ -83,8 +83,9 @@ augroup configgroup
     \   exe "normal! g`\"" |
     \ endif
   au BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md :call <SID>StripTrailingWhitespaces()
-  " Set up comment style for PHP
+  " Set up comment styles
   autocmd FileType php setlocal commentstring=//\ %s
+  autocmd FileType apache setlocal commentstring=#\ %s
   au Filetype gitcommit setlocal spell textwidth=72
   au BufNewFile,BufRead *.json set ft=javascript
   au BufNewFile,BufRead *.md set ft=markdown spell
