@@ -98,6 +98,9 @@ augroup configgroup
   autocmd FileType css,scss,sass setlocal iskeyword+=-
 augroup END
 
+" Start insertmode in git commit messages
+au FileType gitcommit startinsert
+
 " Save file with sudo
 cnoremap w!! w !sudo tee % >/dev/null
 
