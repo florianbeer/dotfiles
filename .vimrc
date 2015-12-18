@@ -33,6 +33,7 @@ set virtualedit+=onemore
 set shortmess+=I " Hide intro menu
 set splitbelow " New split goes below
 set splitright " New split goes right
+set hidden
 set spelllang=en
 let mapleader = ","
 
@@ -146,10 +147,10 @@ nmap <silent> <Leader>b :CtrlPBuffer<CR>
 " allows cursor change in tmux mode
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
 else
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=1\x7"
 endif
 
 " Function called in augroup above
@@ -169,3 +170,4 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
         \ | wincmd p | diffthis
 endif
+
