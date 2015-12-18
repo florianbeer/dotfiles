@@ -25,13 +25,9 @@ umask 0022
 CDPATH=.:$HOME/Sites
 
 # we want the various sbins on the path along with /usr/local/bin
-PATH="$PATH:/usr/local/sbin:/usr/sbin"
+PATH="/usr/local/sbin:/usr/sbin:$PATH"
 
-# LaTeX
-PATH="/usr/texbin:$PATH"
-
-# Composer
-PATH="$HOME/.composer/vendor/bin/:$PATH"
+PATH="$PATH:$HOME/.composer/vendor/bin"
 
 # put ~/bin first on PATH
 if [ -d "$HOME/bin" ]; then
@@ -176,12 +172,6 @@ ssh() {
 # ----------------------------------------------------------------------------
 
 if [ "$(uname)" == "Darwin" ]; then
-
-  # load git completion and git prompt
-  if [[ -f /usr/local/git/contrib/completion/git-completion.bash && -f /usr/local/git/contrib/completion/git-prompt.sh ]]; then
-    source /usr/local/git/contrib/completion/git-completion.bash
-    source /usr/local/git/contrib/completion/git-prompt.sh
-  fi
 
   # check if host is up and announce through text-to-speech
   hostup() {
