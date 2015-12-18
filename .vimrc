@@ -33,7 +33,7 @@ set virtualedit+=onemore
 set shortmess+=I " Hide intro menu
 set splitbelow " New split goes below
 set splitright " New split goes right
-set spelllang=en,de
+set spelllang=en
 let mapleader = ","
 
 " Tabs and Spaces
@@ -163,8 +163,8 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 
 " Convenient command to see the difference between the current buffer and the
-" " file it was loaded from, thus the changes you made.
-" " Only define it when not defined already.
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
         \ | wincmd p | diffthis
