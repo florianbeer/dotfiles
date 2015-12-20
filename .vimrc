@@ -18,8 +18,8 @@ let g:ackhighlight = 1
 let g:ack_default_options = " -s -H --smart-case --follow"
 
 " Colors
-colorscheme atom-dark-256
 set background=dark
+colorscheme atom-dark-256
 syntax enable
 
 " Editor Config
