@@ -170,3 +170,22 @@ endif
 " Allow gf to work with PHP namespaced classes.
 set includeexpr=substitute(v:fname,'\\\','/','g')
 set suffixesadd+=.php
+
+" Set up project directory
+augroup maybe_enter_directory
+  autocmd!
+  autocmd BufEnter,VimEnter * call s:MaybeEnterDirectory(expand("<amatch>"))
+augroup END
+
+function! s:MaybeEnterDirectory(file)
+  if a:file != '' && isdirectory(a:file)
+    let dir = a:file
+    exe "cd ".dir
+
+    if filereadable('.vimrc.local')
+      source .vimrc.local
+      echo "Loaded project file"
+    endif
+  endif
+endfunction
+
