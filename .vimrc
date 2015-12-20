@@ -10,7 +10,9 @@ Plugin 'mileszs/ack.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'SirVer/ultisnips'
+if v:version >= 704
+  Plugin 'SirVer/ultisnips'
+endif
 call vundle#end()
 
 " ack-vim
