@@ -1,0 +1,36 @@
+priority -60
+
+snippet lorem "Lorem Ipsum" i
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+endsnippet
+
+snippet d
+`date +%Y-%m-%d`
+endsnippet
+
+snippet html "Basic HTML5 snippet" b
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>${1:HTML document}</title>
+  <meta name="description" content="${2}">
+  <meta name="author" content="${3:Florian Beer | 42dev e.U.}">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+	${0}
+
+  <script src="js/scripts.js"></script>
+</body>
+</html>
+endsnippet

@@ -1,0 +1,59 @@
+priority -50
+
+snippet php "PHP class"
+<?php
+
+namespace ${1:App};
+
+class ${2:SomeClass}
+{
+	${0}
+}
+
+endsnippet
+
+snippet meth "Documented method"
+/**
+ * $2
+ *
+ * @return ${4:void}
+ * @author Florian Beer | 42dev e.U.
+ **/
+${1:public }function ${2:someFunc}(${3})
+{
+  ${0}
+}
+
+endsnippet
+
+snippet con "Constructor"
+public function __construct()
+{
+  ${0}
+}
+
+endsnippet
+
+snippet doc "Method documentation"
+/**
+ * ${1:Undocumented method}
+ *
+ * @return ${2:void}
+ * @author Florian Beer | 42dev e.U.
+ **/
+endsnippet
+
+snippet /** "php comment block" b
+/**
+ * @${1}
+ */
+endsnippet
+
+snippet doc_a "Attribute documentation"
+/**
+ * ${1:Undocumented attribute}
+ *
+ * @var ${2:mixed}
+ */
+endsnippet
+

@@ -1,0 +1,77 @@
+priority -50
+
+snippet h1 "h1" w
+<h1>${VISUAL}</h1>
+endsnippet
+
+snippet h2 "h2" w
+<h2>${VISUAL}</h2>
+endsnippet
+
+snippet h3 "h3" w
+<h3>${VISUAL}</h3>
+endsnippet
+
+snippet div "<div>" w
+<div>
+	$0
+</div>
+endsnippet
+
+snippet div. "<div> with class" w
+<div`!p snip.rv=' class="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""`>
+	$0
+</div>
+endsnippet
+
+snippet div# "<div> with ID & class" w
+<div`!p snip.rv=' id="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""``!p snip.rv=' class="' if t[2] else ""`${2:name}`!p snip.rv = '"' if t[2] else ""`>
+	$0
+</div>
+endsnippet
+
+snippet fieldset "Fieldset" w
+<fieldset id="${1/[\w\d]+|( )/(?1:_:\L$0\E)/g}" ${2:class="${3:}"}>
+	<legend>$1</legend>
+	$0
+</fieldset>
+endsnippet
+
+snippet a "Link" w
+<a href="${1:http://${2:url.com}}"${3: target="_blank"}>${4:${VISUAL}}</a>
+endsnippet
+
+snippet p "paragraph" w
+<p>$0</p>
+endsnippet
+
+snippet ul "unordered list" w
+<ul>
+${0:${VISUAL}}
+</ul>
+endsnippet
+
+snippet li "list item" w
+<li>${0:${VISUAL}}</li>
+endsnippet
+
+snippet input "Input with Label" w
+<label for="${2:${1/[[:alpha:]]+|( )/(?1:_:\L$0)/g}}">$1</label>
+<input type="${3:text}" name="${4:$2}" value="$5"${6: id="${7:$2}"}>
+endsnippet
+
+snippet button "button" w
+<button type="${1:submit}"  name="${2}" value="$3"${4: id="${5:$2}"}>$6</button>
+endsnippet
+
+snippet option "Option" w
+<option${1: value="${2:option}"}>${3:$2}</option>
+endsnippet
+
+snippet select "Select Box" w
+<select name="${1:some_name}" id="${2:$1}">
+	<option${9: value="${10:option1}"}>${11:$10}</option>
+	<option${12: value="${13:option2}"}>${14:$13}</option>${15:}
+	$0
+</select>
+endsnippet
