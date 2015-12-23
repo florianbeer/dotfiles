@@ -39,7 +39,7 @@ set splitright " New split goes right
 set noshowmode
 set hidden
 set spelllang=en
-let mapleader = ","
+let mapleader = "<"
 
 " Tabs and Spaces
 set tabstop=2
@@ -92,7 +92,7 @@ augroup configgroup
     \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
-  au BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md :call <SID>StripTrailingWhitespaces()
+  au BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java :call <SID>StripTrailingWhitespaces()
   " Set up comment styles
   autocmd FileType php setlocal commentstring=//\ %s
   autocmd FileType apache setlocal commentstring=#\ %s
@@ -139,11 +139,8 @@ nnoremap <NL> i<CR><ESC>
 " Remap Q to disable search highlighting
 nnoremap <silent>Q :nohlsearch<CR>
 
-" Hit CTRL Space to insert word under cursor in search
-cmap <Nul> <C-R><C-W>
-
 " Paste from clipboard in paste mode
-map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
+map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 
 " Open CtrlP for buffers
 nmap <silent> <Leader>b :CtrlPBuffer<CR>
