@@ -36,6 +36,7 @@ set virtualedit+=onemore
 set shortmess+=I " Hide intro menu
 set splitbelow " New split goes below
 set splitright " New split goes right
+set noshowmode
 set hidden
 set spelllang=en
 let mapleader = ","
@@ -136,7 +137,7 @@ nnoremap <NL> i<CR><ESC>
 :imap jk <ESC>
 
 " Remap Q to disable search highlighting
-nnoremap Q :nohlsearch<CR>
+nnoremap <silent>Q :nohlsearch<CR>
 
 " Hit CTRL Space to insert word under cursor in search
 cmap <Nul> <C-R><C-W>
