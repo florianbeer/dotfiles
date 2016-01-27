@@ -9,15 +9,17 @@ snippet d
 endsnippet
 
 snippet html "Basic HTML5 snippet" b
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
-  <title>${1:HTML document}</title>
+  <meta http-equiv="X-UA-Comaptible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${2}">
   <meta name="author" content="${3:Florian Beer | 42dev e.U.}">
+
+  <title>${1:HTML document}</title>
 
   <link rel="stylesheet" href="css/styles.css">
 
@@ -25,7 +27,6 @@ snippet html "Basic HTML5 snippet" b
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 </head>
-
 <body>
 
 	${0}

@@ -57,3 +57,27 @@ snippet doc_a "Attribute documentation"
  */
 endsnippet
 
+snippet testcase "Laravel test"
+<?php
+
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+
+class $1Test extends TestCase
+{
+
+	use DatabaseTransactions;
+
+	/** @test */
+	function $2()
+	{
+		$0
+	}
+endsnippet
+
+snippet test "test function"
+/** @test */
+function $2()
+{
+	$0
+}
+endsnippet
