@@ -23,6 +23,8 @@ let g:ack_default_options = " -s -H --smart-case --follow"
 set background=dark
 colorscheme atom-dark-256
 syntax enable
+highlight lineNr ctermbg=bg
+hi vertsplit ctermbg=bg ctermfg=bg
 
 " Editor Config
 set ttyfast
@@ -39,7 +41,7 @@ set splitright " New split goes right
 set noshowmode
 set hidden
 set spelllang=en
-let mapleader = "<"
+let mapleader = "\<space>"
 
 " Tabs and Spaces
 set tabstop=2
@@ -145,7 +147,8 @@ map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 " Open CtrlP for buffers
 nmap <silent> <Leader>b :CtrlPBuffer<CR>
 " Dont search here with CtrlP
-set wildignore+=*/vendor/**
+set wildignore+=*/vendor/**,node_modules
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 " Function called in augroup above
 function! <SID>StripTrailingWhitespaces()
