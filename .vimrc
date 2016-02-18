@@ -87,6 +87,7 @@ endif
 
 " Filetypes
 augroup configgroup
+  autocmd!
   " When editing a file, always jump to the last known cursor position. Don't
   " do it for commit messages, when the position is invalid, or when inside an
   " event handler (happens when dropping a file on gvim).
@@ -159,6 +160,11 @@ function! <SID>StripTrailingWhitespaces()
   let @/=_s
   call cursor(l, c)
 endfunction
+
+" Prettyprint for JSON, HTML & XML
+command! PrettyPrintJSON %!python -m json.tool
+command! PrettyPrintHTML !tidy -mi -html -wrap 0 %
+command! PrettyPrintXML !tidy -mi -xml -wrap 0 %
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
