@@ -185,6 +185,26 @@ if [ "$(uname)" == "Darwin" ]; then
   # OS X specific aliases
   alias top='top -o cpu'
   alias talk='cat - | while read cat; do say $cat; done'
+
+  # Homestead helper
+  function vm() {
+    cd ~/Homestead
+
+    command="$1"
+
+    if [ "$command" = "edit" ]; then
+      open ~/.homestead/homestead.yaml
+    else
+      if [ -z "$command" ]; then 
+        command="ssh"
+      fi
+
+      eval "vagrant ${command}"
+    fi
+
+    cd -
+  }
+
 fi
 
 ulimit -n 2560
