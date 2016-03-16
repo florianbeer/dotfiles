@@ -52,14 +52,14 @@ set expandtab
 filetype plugin indent on
 
 " UI Layout
-set showcmd
+" set showcmd
 set number
 set laststatus=2
 highlight StatusLine cterm=bold ctermfg=255 ctermbg=235
 highlight StatusLineNC cterm=bold ctermfg=240 ctermbg=235
 au InsertLeave * highlight StatusLine cterm=bold ctermfg=255 ctermbg=235
-au InsertEnter * highlight StatusLine cterm=bold ctermfg=black ctermbg=65
-set statusline=%*%t\ [%{strlen(&fenc)?&fenc:'none'},\ %{&ff}]\ %y%=\ %h%m%r%w\ %{fugitive#statusline()}\ [%l,%02c]\ [%L,%p%%]
+au InsertEnter * highlight StatusLine cterm=bold ctermfg=16 ctermbg=24
+set statusline=%*%t\ \ %h%m%r%w%=\ %{fugitive#statusline()}\ %c\|%02l\ %p%%\ %L
 
 " Searching
 set ignorecase
@@ -106,6 +106,21 @@ augroup configgroup
   autocmd FileType css,scss,sass setlocal iskeyword+=-
 augroup END
 
+" Activate syntax completion
+set omnifunc=syntaxcomplete#Complete
+
+" Improve completion menu
+set completeopt=longest,menuone
+
+" <ENTER> inserts current completion selection
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" keep menu item always highlighted in completion
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <expr> <C-p> pumvisible() ? '<C-p>' :
+  \ '<C-p><C-r>=pumvisible() ? "\<lt>Up>" : ""<CR>'
+
 " Start insertmode in git commit messages
 au FileType gitcommit startinsert
 
@@ -145,6 +160,10 @@ nnoremap <silent>Q :nohlsearch<CR>
 " Paste from clipboard in paste mode
 map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 
+" TAB and S-TAB to switch buffers
+nnoremap <silent><TAB> :bp<CR>
+nnoremap <silent><S-TAB> :bn<CR>
+
 " Open CtrlP for buffers
 nmap <silent> <Leader>b :CtrlPBuffer<CR>
 " Dont search here with CtrlP
@@ -173,26 +192,3 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
         \ | wincmd p | diffthis
 endif
-
-" Allow gf to work with PHP namespaced classes.
-set includeexpr=substitute(v:fname,'\\\','/','g')
-set suffixesadd+=.php
-
-" Set up project directory
-augroup maybe_enter_directory
-  autocmd!
-  autocmd BufEnter,VimEnter * call s:MaybeEnterDirectory(expand("<amatch>"))
-augroup END
-
-function! s:MaybeEnterDirectory(file)
-  if a:file != '' && isdirectory(a:file)
-    let dir = a:file
-    exe "cd ".dir
-
-    if filereadable('.vimrc.local')
-      source .vimrc.local
-      echo "Loaded project file"
-    endif
-  endif
-endfunction
-
