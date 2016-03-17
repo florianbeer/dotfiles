@@ -15,96 +15,92 @@ if v:version >= 704
 endif
 call vundle#end()
 
-" ack-vim
-let g:ackhighlight = 1
-let g:ack_default_options = " -s -H --smart-case --follow"
-
 " Colors
+syntax enable
 set background=dark
 colorscheme atom-dark-256
-syntax enable
 highlight lineNr ctermbg=bg
-hi vertsplit ctermbg=bg ctermfg=bg
-
-" Editor Config
-set ttyfast
-set encoding=utf-8
-set backspace=indent,eol,start
-set ttimeout
-set ttimeoutlen=100
-set scrolloff=1
-set autoread
-set virtualedit+=onemore
-set shortmess+=I " Hide intro menu
-set splitbelow " New split goes below
-set splitright " New split goes right
-set noshowmode
-set hidden
-set spelllang=en
-let mapleader = "\<space>"
-
-" Tabs and Spaces
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set smarttab
-set expandtab
-filetype plugin indent on
-
-" UI Layout
-" set showcmd
-set number
-set laststatus=2
+highlight vertsplit ctermbg=bg ctermfg=bg
 highlight StatusLine cterm=bold ctermfg=255 ctermbg=235
 highlight StatusLineNC cterm=bold ctermfg=240 ctermbg=235
-au InsertLeave * highlight StatusLine cterm=bold ctermfg=255 ctermbg=235
 au InsertEnter * highlight StatusLine cterm=bold ctermfg=16 ctermbg=24
+au InsertLeave * highlight StatusLine cterm=bold ctermfg=255 ctermbg=235
+
+" Editor Config
+set hidden
+set number
+set ttyfast
+set autoread
+set ttimeout
+set noshowmode
+set splitbelow
+set splitright
+set scrolloff=1
+set laststatus=2
+set shortmess+=I
+set spelllang=en
+set encoding=utf-8
+set ttimeoutlen=100
+set virtualedit+=onemore
+set backspace=indent,eol,start
 set statusline=%*%t\ \ %h%m%r%w%=\ %{fugitive#statusline()}\ %c\|%02l\ %p%%\ %L
 
+" Tabs and Spaces
+set smarttab
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+filetype plugin indent on
+
 " Searching
-set ignorecase
+set hlsearch
 set incsearch
 set smartcase
-set hlsearch
+set ignorecase
 
 " Backup
 set backup
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set backupskip=/tmp/*,/private/tmp/*
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
+set backupskip=/tmp/*,/private/tmp/*
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " Undo
 if exists("+undofile")
 	if isdirectory($HOME . '/.vim/undodir') == 0
 		:silent !mkdir -p ~/.vim/undodir > /dev/null 2>&1
 	endif
-	set undodir=~/.vim/undodir//
 	set undofile
 	set undolevels=5000
 	set undoreload=10000
+  set undodir=~/.vim/undodir//
 endif
 
-" Filetypes
+" Settigs for certain filetypes
 augroup configgroup
   autocmd!
-  " When editing a file, always jump to the last known cursor position. Don't
-  " do it for commit messages, when the position is invalid, or when inside an
-  " event handler (happens when dropping a file on gvim).
   autocmd BufReadPost *
     \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
   au BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java :call <SID>StripTrailingWhitespaces()
-  " Set up comment styles
-  autocmd FileType php setlocal commentstring=//\ %s
-  autocmd FileType apache setlocal commentstring=#\ %s
+  au FileType php setlocal commentstring=//\ %s
+  au FileType apache setlocal commentstring=#\ %s
+  au FileType css,scss,sass setlocal iskeyword+=-
+  au FileType gitcommit startinsert
   au Filetype gitcommit setlocal spell textwidth=72
   au BufNewFile,BufRead *.json set ft=javascript
   au BufNewFile,BufRead *.md set ft=markdown spell
-  autocmd BufRead,BufNewFile *.blade.php set filetype=html
-  autocmd FileType css,scss,sass setlocal iskeyword+=-
+  au BufRead,BufNewFile *.blade.php set filetype=html
 augroup END
+
+" ack-vim
+let g:ackhighlight = 1
+let g:ack_default_options = " -s --with-filename"
+
+" Set space as leader key
+let mapleader = "\<space>"
 
 " Activate syntax completion
 set omnifunc=syntaxcomplete#Complete
@@ -121,15 +117,16 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
 inoremap <expr> <C-p> pumvisible() ? '<C-p>' :
   \ '<C-p><C-r>=pumvisible() ? "\<lt>Up>" : ""<CR>'
 
-" Start insertmode in git commit messages
-au FileType gitcommit startinsert
-
 " Save file with sudo
 cnoremap w!! w !sudo tee % >/dev/null
 
 " Move visual block
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
 
 " Keep visual selection on indent
 vnoremap < <gv
@@ -140,10 +137,6 @@ imap <C-a> <C-o>0
 imap <C-e> <C-o>$
 map <C-e> $
 map <C-a> 0
-
-" move vertically by visual line
-nnoremap j gj
-nnoremap k gk
 
 " highlight last inserted text
 nnoremap gV `[v`]
@@ -156,6 +149,9 @@ nnoremap <NL> i<CR><ESC>
 
 " Remap Q to disable search highlighting
 nnoremap <silent>Q :nohlsearch<CR>
+
+" Toggle line numbering
+nnoremap <silent> <Leader>n :silent set number!<CR>
 
 " Paste from clipboard in paste mode
 map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
@@ -175,13 +171,13 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 " Show hidden files/dirs in CtrlP
 let g:ctrlp_show_hidden = 1
 
-" Show current file in CtrlP
+" Always show current file in CtrlP
 let g:ctrlp_match_current_file = 1
 
 " Unclutter CtrlP item listing
 let g:ctrlp_line_prefix = '' 
 
-" Function called in augroup above
+" Function to strip trailing whitespace
 function! <SID>StripTrailingWhitespaces()
   let _s=@/
   let l = line(".")
@@ -196,10 +192,14 @@ command! PrettyPrintJSON %!python -m json.tool
 command! PrettyPrintHTML !tidy -mi -html -wrap 0 %
 command! PrettyPrintXML !tidy -mi -xml -wrap 0 %
 
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
+" See difference between current buffer changes you made
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
         \ | wincmd p | diffthis
 endif
+
+" Make 'gf' useful in PHP files on class names
+set includeexpr=substitute(v:fname,'\\\','/','g')                                                                                                    
+set suffixesadd+=.php
+set path+=$PWD/vendor/**
+set path+=$PWD/app/**
