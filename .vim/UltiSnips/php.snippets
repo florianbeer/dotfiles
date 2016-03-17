@@ -17,11 +17,10 @@ snippet meth "Documented method"
  * $2
  *
  * @return ${4:void}
- * @author Florian Beer | 42dev e.U.
  **/
 ${1:public }function ${2:someFunc}(${3})
 {
-  ${0}
+	${0}
 }
 
 endsnippet
@@ -29,7 +28,7 @@ endsnippet
 snippet con "Constructor"
 public function __construct()
 {
-  ${0}
+	${0}
 }
 
 endsnippet
@@ -39,7 +38,6 @@ snippet doc "Method documentation"
  * ${1:Undocumented method}
  *
  * @return ${2:void}
- * @author Florian Beer | 42dev e.U.
  **/
 endsnippet
 
@@ -49,7 +47,7 @@ snippet /** "php comment block" b
  */
 endsnippet
 
-snippet doc_a "Attribute documentation"
+snippet doca "Attribute documentation"
 /**
  * ${1:Undocumented attribute}
  *
@@ -57,26 +55,9 @@ snippet doc_a "Attribute documentation"
  */
 endsnippet
 
-snippet testcase "Laravel test"
-<?php
-
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-
-class $1Test extends TestCase
-{
-
-	use DatabaseTransactions;
-
-	/** @test */
-	function $2()
-	{
-		$0
-	}
-endsnippet
-
 snippet test "test function"
 /** @test */
-function $2()
+function $1()
 {
 	$0
 }
