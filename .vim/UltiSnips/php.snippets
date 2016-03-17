@@ -14,15 +14,15 @@ endsnippet
 
 snippet meth "Documented method"
 /**
- * $2
+ * ${4:undocumented function}
  *
- * @return ${4:void}
- **/
-${1:public }function ${2:someFunc}(${3})
+ * @return ${5:void}
+ */
+${1:public} function ${2:name}(${3:$param})
 {
-	${0}
+	${VISUAL}${6:return null;}
 }
-
+$0
 endsnippet
 
 snippet con "Constructor"
@@ -60,5 +60,17 @@ snippet test "test function"
 function $1()
 {
 	$0
+}
+endsnippet
+
+snippet if "if"
+if (${1:/* condition */}) {
+	${VISUAL}${2}
+}
+endsnippet
+
+snippet else "else"
+else {
+	${VISUAL}${1}
 }
 endsnippet

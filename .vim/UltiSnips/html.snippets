@@ -1,5 +1,33 @@
 priority -50
 
+snippet html "Basic HTML5 snippet" b
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Comaptible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="${2}">
+  <meta name="author" content="${3:Florian Beer | 42dev e.U.}">
+
+  <title>${1:HTML document}</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+
+	${0}
+
+  <script src="js/scripts.js"></script>
+</body>
+</html>
+endsnippet
+
 snippet h1 "h1" w
 <h1>${VISUAL}</h1>
 endsnippet
@@ -74,4 +102,20 @@ snippet select "Select Box" w
 	<option${12: value="${13:option2}"}>${14:$13}</option>${15:}
 	$0
 </select>
+endsnippet
+
+snippet td "table cell" w
+<td>$0</td>
+endsnippet
+
+snippet th "table header" w
+<th>$0</th>
+endsnippet
+
+snippet tr "table row" w
+<tr>$0</tr>
+endsnippet
+
+snippet idn
+id="${1}" name="${2:$1}"
 endsnippet
