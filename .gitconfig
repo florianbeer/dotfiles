@@ -1,39 +1,38 @@
 [core]
-	quotepath = false
-	excludesfile = ~/.gitignore
-	pager = cat
+  quotepath = false
+  excludesfile = ~/.gitignore
+  pager = cat
 [color]
-	ui = auto
+  ui = auto
 [color "branch"]
-	current = green reverse
-	local = green
-	remote = yellow
+  current = green reverse
+  local = green
+  remote = yellow
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
+  added = yellow
+  changed = green
+  untracked = cyan
 [alias]
-	lg = log --pretty=tformat:'%Cred%h%Creset -%Cblue%d%Creset %s %Cgreen(%cr)%Creset %C(yellow)<%an>%Creset' --abbrev-commit --date=relative --reverse
-	graph = log --graph --pretty=tformat':%C(yellow)%h%Cblue%d%Creset %s %C(white) <%an>, %ar%Creset'
-	latest = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname:short) [%(committername)]'
+  lg = log --pretty=tformat:'%Cred%h%Creset -%Cblue%d%Creset %s %Cgreen(%cr)%Creset %C(yellow)<%an>%Creset' --abbrev-commit --date=relative --reverse
+  graph = log --graph --pretty=tformat':%C(yellow)%h%Cblue%d%Creset %s %C(white) <%an>, %ar%Creset'
+  latest = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname:short) [%(committername)]'
   amend = commit --amend --reuse-message=HEAD
-	undo = reset --soft HEAD
+  undo = reset --soft HEAD
   hide = update-index --assume-unchanged
   unhide = update-index --no-assume-unchanged
   s = status -sb
   contributors = shortlog --summary --numbered
   d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-  retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
 [push]
-	default = tracking
+  default = tracking
 [branch]
   autosetupmerge = true
 [credential] 
-    helper = osxkeychain
+  helper = osxkeychain
 [include]
-    path = ~/.gitconfig.local
+  path = ~/.gitconfig.local
