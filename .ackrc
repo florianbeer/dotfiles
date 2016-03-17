@@ -1,8 +1,15 @@
 --smart-case
 --sort-files
---context=2
+--ignore-file=is:composer.lock
+--ignore-dir=vendor
 --ignore-dir=node_modules
 --ignore-dir=dist
 --ignore-dir=.tmp
 --ignore-dir=bower
 --ignore-dir=assets/js
+--ignore-dir=cache
+--ignore-dir=build
+--ignore-dir=fonts
+--ignore-dir=font
+--ignore-dir=storage
+--ignore-dir=.idea
