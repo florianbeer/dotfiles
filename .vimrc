@@ -164,11 +164,22 @@ map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 nnoremap <silent><TAB> :bp<CR>
 nnoremap <silent><S-TAB> :bn<CR>
 
-" Open CtrlP for buffers
+" Open CtrlP for buffers and MRU
 nmap <silent> <Leader>b :CtrlPBuffer<CR>
+nmap <silent> <Leader>m :CtrlPMRU<CR>
+
 " Dont search here with CtrlP
 set wildignore+=*/vendor/**,node_modules
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+" Show hidden files/dirs in CtrlP
+let g:ctrlp_show_hidden = 1
+
+" Show current file in CtrlP
+let g:ctrlp_match_current_file = 1
+
+" Unclutter CtrlP item listing
+let g:ctrlp_line_prefix = '' 
 
 " Function called in augroup above
 function! <SID>StripTrailingWhitespaces()
