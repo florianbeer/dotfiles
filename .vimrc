@@ -153,7 +153,10 @@ nnoremap <silent>Q :nohlsearch<CR>
 " Toggle line numbering
 nnoremap <silent> <Leader>n :silent set number!<CR>
 
-" Paste from clipboard in paste mode
+" Copy to system clipboard
+map <leader>c "*y
+
+" Paste from system clipboard
 map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 
 " TAB and S-TAB to switch buffers
@@ -203,3 +206,10 @@ set includeexpr=substitute(v:fname,'\\\','/','g')
 set suffixesadd+=.php
 set path+=$PWD/vendor/**
 set path+=$PWD/app/**
+
+" super quick search and replace
+nnoremap <Space><Space> :'{,'}s/\<<C-r>=expand("<cword>")<CR>\>/
+nnoremap <Space>%       :%s/\<<C-r>=expand("<cword>")<CR>\>/
+
+" page facing view: side-by-side view of same buffer scrollbound
+nnoremap <leader>vs :<C-u>let @z=&so<cr>:set so=0 noscb<cr>:bo vs<cr>Ljzt:setl scb<cr><C-w>p:setl scb<cr>:let &so=@z<cr>
