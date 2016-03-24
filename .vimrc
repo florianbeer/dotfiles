@@ -53,10 +53,12 @@ set splitbelow
 set splitright
 set scrolloff=1
 set laststatus=2
+set nojoinspaces
 set shortmess+=I
 set spelllang=en
 set encoding=utf-8
 set ttimeoutlen=100
+set formatoptions+=j
 set virtualedit+=onemore
 set backspace=indent,eol,start
 set statusline=%*%t\ \ %h%m%r%w%=\ %{fugitive#statusline()}\ %c\|%02l\ %p%%\ %L
@@ -109,6 +111,7 @@ augroup configgroup
   au BufNewFile,BufRead *.json set ft=javascript
   au BufNewFile,BufRead *.md set ft=markdown spell
   au BufRead,BufNewFile *.blade.php set filetype=html
+  au BufWritePost .vimrc source %
 augroup END
 
 " ack-vim
@@ -149,10 +152,10 @@ vnoremap < <gv
 vnoremap > >gv
 
 " emacs style key mappings for start/end of line
-imap <C-a> <C-o>0
+imap <C-a> <C-o>^
 imap <C-e> <C-o>$
+map <C-a> ^
 map <C-e> $
-map <C-a> 0
 
 " highlight last inserted text
 nnoremap gV `[v`]
