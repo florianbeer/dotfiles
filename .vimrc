@@ -19,6 +19,8 @@ Plugin 'mileszs/ack.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'tobyS/pdv'
+Plugin 'tobyS/vmustache'
 if v:version >= 704
   Plugin 'SirVer/ultisnips'
 endif
@@ -227,3 +229,10 @@ nnoremap <Space>%       :%s/\<<C-r>=expand("<cword>")<CR>\>/
 
 " page facing view: side-by-side view of same buffer scrollbound
 nnoremap <leader>vs :<C-u>let @z=&so<cr>:set so=0 noscb<cr>:bo vs<cr>Ljzt:setl scb<cr><C-w>p:setl scb<cr>:let &so=@z<cr>
+
+" Ultisnips / PHP Documentor
+let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+nnoremap <leader>d :call pdv#DocumentWithSnip()<CR>
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
