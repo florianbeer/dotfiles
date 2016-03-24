@@ -13,14 +13,16 @@ filetype off
 set rtp+=$HOME/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
 Plugin 'mileszs/ack.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'editorconfig/editorconfig-vim'
 Plugin 'tobyS/pdv'
 Plugin 'tobyS/vmustache'
+Plugin 'editorconfig/editorconfig-vim'
 if v:version >= 704
   Plugin 'SirVer/ultisnips'
 endif
