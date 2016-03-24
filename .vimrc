@@ -1,7 +1,16 @@
-" Vundle
+" Setting up Vundle
+let VundleInstalled=1
+let vundle_readme=expand($HOME.'/.vim/bundle/Vundle.vim/README.md')
+if !filereadable(vundle_readme) 
+		echo "Installing Vundle ..."
+		echo ""
+		silent !mkdir -p $HOME/.vim/bundle
+		silent !git clone https://github.com/VundleVim/Vundle.vim $HOME/.vim/bundle/Vundle.vim
+		let VundleInstalled=0
+endif
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=$HOME/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-vinegar'
@@ -12,6 +21,11 @@ Plugin 'tpope/vim-commentary'
 Plugin 'editorconfig/editorconfig-vim'
 if v:version >= 704
   Plugin 'SirVer/ultisnips'
+endif
+if VundleInstalled == 0
+  echo "Installing Plugins, please ignore key map error messages"
+  echo ""
+  :PluginInstall
 endif
 call vundle#end()
 
