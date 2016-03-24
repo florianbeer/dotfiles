@@ -51,7 +51,7 @@ set ttimeout
 set noshowmode
 set splitbelow
 set splitright
-set scrolloff=1
+set scrolloff=3
 set laststatus=2
 set nojoinspaces
 set shortmess+=I
