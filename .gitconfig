@@ -28,6 +28,7 @@
   s = status -sb
   contributors = shortlog --summary --numbered
   d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+  fix = "!f() { ${EDITOR} `git diff --name-only`; }; f"
 [push]
   default = tracking
 [branch]
