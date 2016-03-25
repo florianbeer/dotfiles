@@ -36,12 +36,13 @@ call vundle#end()
 " Colors
 syntax enable
 set background=dark
-colorscheme atom-dark-256
+colorscheme alduin
+" colorscheme atom-dark-256
 highlight lineNr ctermbg=bg
 highlight vertsplit ctermbg=bg ctermfg=bg
 highlight StatusLine cterm=bold ctermfg=255 ctermbg=235
 highlight StatusLineNC cterm=bold ctermfg=240 ctermbg=235
-au InsertEnter * highlight StatusLine cterm=bold ctermfg=16 ctermbg=24
+au InsertEnter * highlight StatusLine cterm=bold ctermfg=16 ctermbg=101
 au InsertLeave * highlight StatusLine cterm=bold ctermfg=255 ctermbg=235
 
 " Editor Config
