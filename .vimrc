@@ -37,7 +37,8 @@ call vundle#end()
 syntax enable
 set background=dark
 colorscheme alduin
-" colorscheme atom-dark-256
+highlight clear SpellBad
+highlight SpellBad cterm=underline
 highlight lineNr ctermbg=bg
 highlight vertsplit ctermbg=bg ctermfg=bg
 highlight StatusLine cterm=bold ctermfg=255 ctermbg=235
