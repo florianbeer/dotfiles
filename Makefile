@@ -9,6 +9,7 @@ install :
 		install -v -C -m 0644 -- .bash_profile "$(HOME)"/.bash_profile
 		install -v -C -m 0644 -- .inputrc "$(HOME)"/.inputrc
 		install -v -C -m 0644 -- .gitconfig "$(HOME)"/.gitconfig
+		install -v -C -m 0644 -- .githelpers "$(HOME)"/.githelpers
 		install -v -C -m 0644 -- .gitignore "$(HOME)"/.gitignore
 		install -v -C -m 0644 -- .tmux-powerlinerc "$(HOME)"/.tmux-powerlinerc
 		install -v -C -m 0644 -- .tmux.conf "$(HOME)"/.tmux.conf
