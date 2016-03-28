@@ -25,7 +25,7 @@ umask 0022
 CDPATH=.:$HOME/Sites
 
 # we want the various sbins on the path along with /usr/local/bin
-PATH="/usr/local/sbin:/usr/sbin:$PATH"
+PATH="/usr/local/bin:/usr/local/sbin:/usr/sbin:$PATH"
 
 PATH="$PATH:$HOME/.composer/vendor/bin"
 
