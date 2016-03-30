@@ -17,3 +17,4 @@ install :
 		install -v -C -m 0644 -- .vimrc "$(HOME)"/.vimrc
 		install -v -C -m 0644 -- .wgetrc "$(HOME)"/.wgetrc
 		install -v -C -m 0644 -- .ackrc "$(HOME)"/.ackrc
+		install -v -C -m 0644 -- .toprc "$(HOME)"/.toprc
