@@ -115,6 +115,7 @@ augroup configgroup
   au BufNewFile,BufRead *.md set ft=markdown spell
   au BufRead,BufNewFile *.blade.php set filetype=html
   au BufWritePost .vimrc source %
+  au BufEnter *.js syn match ErrorMsg /console.log/
 augroup END
 
 " ack-vim
