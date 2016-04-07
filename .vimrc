@@ -18,6 +18,7 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'mileszs/ack.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tobyS/pdv'
@@ -58,6 +59,7 @@ set nojoinspaces
 set shortmess+=I
 set spelllang=en
 set encoding=utf-8
+set updatetime=250
 set ttimeoutlen=100
 set formatoptions+=j
 set virtualedit+=onemore
