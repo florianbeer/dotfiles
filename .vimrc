@@ -36,15 +36,12 @@ call vundle#end()
 " Colors
 syntax enable
 set background=dark
-colorscheme alduin
-highlight clear SpellBad
-highlight SpellBad cterm=underline
-highlight lineNr ctermbg=bg
+colorscheme hemisu
 highlight vertsplit ctermbg=bg ctermfg=bg
-highlight StatusLine cterm=bold ctermfg=255 ctermbg=235
-highlight StatusLineNC cterm=bold ctermfg=240 ctermbg=235
-au InsertEnter * highlight StatusLine cterm=bold ctermfg=16 ctermbg=101
-au InsertLeave * highlight StatusLine cterm=bold ctermfg=255 ctermbg=235
+highlight StatusLine cterm=bold ctermfg=fg ctermbg=bg
+highlight StatusLineNC cterm=bold ctermfg=240 ctermbg=bg
+au InsertEnter * highlight StatusLine cterm=bold ctermfg=fg ctermbg=235
+au InsertLeave * highlight StatusLine cterm=bold ctermfg=fg ctermbg=bg
 
 " Editor Config
 set hidden
