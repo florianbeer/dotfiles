@@ -182,6 +182,9 @@ map <leader>c "*y
 " Paste from system clipboard
 map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 
+" Edit word and repeat on next occurence with .
+nnoremap <leader>r *``cgn
+
 " TAB and S-TAB to switch buffers
 nnoremap <silent><TAB> :bp<CR>
 nnoremap <silent><S-TAB> :bn<CR>
