@@ -5,6 +5,8 @@ all : install
 install :
 		cp -rf .tmux-powerline "$(HOME)"/.
 		cp -rf .vim "$(HOME)"/.
+		mkdir -p "$(HOME)"/.config/i3
+		install -v -C -m 0644 -- .config/i3/config "$(HOME)"/.config/i3/config
 		install -v -C -m 0644 -- .bashrc "$(HOME)"/.bashrc
 		install -v -C -m 0644 -- .bash_profile "$(HOME)"/.bash_profile
 		install -v -C -m 0644 -- .inputrc "$(HOME)"/.inputrc
