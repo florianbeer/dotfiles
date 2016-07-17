@@ -173,6 +173,11 @@ function digga() {
   dig +nocmd "$1" any +multiline +noall +answer
 }
 
+# choose random line from file
+function raffle() {
+  head -$((${RANDOM} % `wc -l < $1` + 1)) $1 | tail -1
+}
+
 # ----------------------------------------------------------------------------
 # OS X SPECIFIC STUFF
 # ----------------------------------------------------------------------------
