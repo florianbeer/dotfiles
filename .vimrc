@@ -24,6 +24,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tobyS/pdv'
 Plugin 'tobyS/vmustache'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'pbrisbin/vim-mkdir'
 if v:version >= 704
   Plugin 'SirVer/ultisnips'
 endif
@@ -64,7 +65,17 @@ set ttimeoutlen=100
 set formatoptions+=j
 set virtualedit+=onemore
 set backspace=indent,eol,start
-set statusline=%*%t\ \ %h%m%r%w%=\ %{fugitive#statusline()}\ %c\|%02l\ %p%%\ %L
+
+" Statusline
+set statusline=
+" current filename
+set statusline+=%*%t
+" file flags
+set statusline+=\ %m%r%w
+" git status
+set statusline+=\ %{fugitive#statusline()}
+" column and line
+set statusline+=%=\ %c:%l/%L\ %3.p%%
 
 " Tabs and Spaces
 set smarttab
@@ -111,7 +122,6 @@ augroup configgroup
   au FileType css,scss,sass setlocal iskeyword+=-
   au FileType gitcommit startinsert
   au Filetype gitcommit setlocal spell textwidth=72
-  au BufNewFile,BufRead *.json set ft=javascript
   au BufNewFile,BufRead *.md set ft=markdown spell
   au BufRead,BufNewFile *.blade.php set filetype=html
   au BufWritePost .vimrc source %
@@ -130,9 +140,6 @@ set omnifunc=syntaxcomplete#Complete
 
 " Improve completion menu
 set completeopt=longest,menuone
-
-" <ENTER> inserts current completion selection
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " keep menu item always highlighted in completion
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
