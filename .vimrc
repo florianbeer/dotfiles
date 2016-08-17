@@ -40,13 +40,7 @@ call vundle#end()
 " Colors
 syntax enable
 set background=dark
-if has('termguicolors')
-  " set termguicolors
-  " colorscheme hemisu
-  colorscheme distinguished
-else
-  colorscheme hemisu
-endif
+colorscheme distinguished
 highlight vertsplit ctermbg=bg ctermfg=bg
 highlight StatusLine cterm=bold ctermfg=fg ctermbg=bg
 highlight StatusLineNC cterm=bold ctermfg=240 ctermbg=bg
