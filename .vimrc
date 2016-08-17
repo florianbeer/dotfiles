@@ -242,10 +242,6 @@ set suffixesadd+=.php
 set path+=$PWD/vendor/**
 set path+=$PWD/app/**
 
-" super quick search and replace
-nnoremap <Space><Space> :'{,'}s/\<<C-r>=expand("<cword>")<CR>\>/
-nnoremap <Space>%       :%s/\<<C-r>=expand("<cword>")<CR>\>/
-
 " page facing view: side-by-side view of same buffer scrollbound
 nnoremap <leader>vs :<C-u>let @z=&so<cr>:set so=0 noscb<cr>:bo vs<cr>Ljzt:setl scb<cr><C-w>p:setl scb<cr>:let &so=@z<cr>
 
