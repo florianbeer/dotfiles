@@ -28,7 +28,9 @@ Plugin 'pbrisbin/vim-mkdir'
 Plugin 'posva/vim-vue'
 Plugin 'othree/html5.vim'
 if v:version >= 704
-  Plugin 'SirVer/ultisnips'
+    if has('python')
+        Plugin 'SirVer/ultisnips'
+    endif
 endif
 if VundleInstalled == 0
   echo "Installing Plugins, please ignore key map error messages"
