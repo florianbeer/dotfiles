@@ -178,6 +178,11 @@ function raffle() {
   head -$((${RANDOM} % `wc -l < $1` + 1)) $1 | tail -1
 }
 
+# get random BOFH excuse
+function bofh() {
+    telnet towel.blinkenlights.nl 666
+}
+
 # ----------------------------------------------------------------------------
 # OS X SPECIFIC STUFF
 # ----------------------------------------------------------------------------
