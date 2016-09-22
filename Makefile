@@ -20,3 +20,4 @@ install :
 		install -v -C -m 0644 -- .wgetrc "$(HOME)"/.wgetrc
 		install -v -C -m 0644 -- .ackrc "$(HOME)"/.ackrc
 		install -v -C -m 0644 -- .toprc "$(HOME)"/.toprc
+		install -v -C -m 0644 -- .less "$(HOME)"/.less
