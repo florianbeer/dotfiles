@@ -1,55 +1,53 @@
 [core]
-  quotepath = false
-  excludesfile = ~/.gitignore
-  pager=cat
+    quotepath = false
+    excludesfile = ~/.gitignore
+    pager=cat
 [color]
-  ui = auto
+    ui = auto
 [color "branch"]
-  current = green reverse
-  local = green
-  remote = yellow
+    current = green reverse
+    local = green
+    remote = yellow
 [color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
 [color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
+    added = yellow
+    changed = green
+    untracked = cyan
 [alias]
-  # Fancy logging (https://github.com/garybernhardt/dotfiles/)
-  #   h = head
-  #   hp = head with patch
-  #   r = recent commits, only current branch
-  #   ra = recent commits, all reachable refs
-  #   l = all commits, only current branch
-  #   la = all commits, all reachable refs
-  head = !git r -1
-  h = !git head
-  hp = "!. ~/.githelpers && show_git_head"
-  r = !GIT_NO_PAGER=1 git l -30
-  ra = !git r --all
-  l = "!. ~/.githelpers && pretty_git_log"
-  la = !git l --all
-  s = status -sb
-  #
-  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-  latest = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname:short) [%(committername)]'
-  amend = commit --amend --reuse-message=HEAD
-  hide = update-index --assume-unchanged
-  unhide = update-index --no-assume-unchanged
-  fix = "!f() { ${EDITOR} `git diff --name-only`; }; f"
-  branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
+    # Fancy logging (https://github.com/garybernhardt/dotfiles/)
+    #   h = head
+    #   hp = head with patch
+    #   r = recent commits, only current branch
+    #   ra = recent commits, all reachable refs
+    #   l = all commits, only current branch
+    #   la = all commits, all reachable refs
+    head = !git r -1
+    h = !git head
+    hp = "!. ~/.githelpers && show_git_head"
+    r = !GIT_NO_PAGER=1 git l -30
+    ra = !git r --all
+    l = "!. ~/.githelpers && pretty_git_log"
+    la = !git l --all
+    s = status -sb
+    d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+    latest = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname:short) [%(committername)]'
+    amend = commit --amend --reuse-message=HEAD
+    hide = update-index --assume-unchanged
+    unhide = update-index --no-assume-unchanged
+    fix = "!f() { ${EDITOR} `git diff --name-only`; }; f"
+    branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
+    lg = log --pretty=tformat:'%Cred%h%Creset -%Cblue%d%Creset %s %Cgreen(%cr)%Creset %C(yellow)<%an>%Creset' --abbrev-commit --date=relative --reverse
 [push]
-  default = tracking
+    default = tracking
 [branch]
-  autosetupmerge = true
+    autosetupmerge = true
 [credential] 
-  helper = osxkeychain
-[merge]
-    ff = only
+    helper = osxkeychain
 [blame]
-  date = short
+    date = short
 [include]
-  path = ~/.gitconfig.local
+    path = ~/.gitconfig.local
