@@ -1,3 +1,6 @@
+########################
+# Variables
+########################
 set $mod Mod1
 
 set $base00 #101218
@@ -17,9 +20,15 @@ set $base0D #97bbf7
 set $base0E #c0b7f9
 set $base0F #fcc09e
 
+set $wallpaper ~/Documents/wallpaper.png
+
+########################
+# Configuration
+########################
 hide_edge_borders both
 new_window pixel 1
 new_float pixel 1
+font pango:System San Francisco Display 10
 
 # Widow Colours
 #                       border  background text    indicator
@@ -28,15 +37,21 @@ client.focused_inactive $base02 $base02    $base03 $base0F
 client.unfocused        $base02 $base02    $base03 $base0F
 client.urgent           $base02 $base08    $base00 $base0F
 
-font pango:System San Francisco Display 10
 
-floating_modifier $mod
-
+########################
+# Keybindings
+########################
 bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Shift+Return exec /usr/bin/firefox
 bindsym $mod+Shift+q kill
-bindsym $mod+d exec rofi -show run -font "System San Francisco Display 18" -opacity "85"
-bindsym $mod+Shift+Left workspace prev
-bindsym $mod+Shift+Right workspace next
+
+# Show all windows
+bindsym Mod1+Tab exec rofi -show window -lines 10 -eh 2 -width 100 -padding 450 -opacity "85" -bw 0 -bc "$base01" -bg "$base01" -fg "$base07" -hlbg "$base02" -hlfg "#9575cd" -font "System San Francisco Display 18"
+
+# Open applications with ALT+Space (OS X spotlight muscle memory)
+bindsym $mod+space exec rofi -show run -lines 5 -eh 2 -width 100 -padding 450 -opacity 85 -bw 10 -bc "$base01" -bg "$base01" -fg "$base07" -hlbg "$base04" -hlfg "$base01" -font "System San Francisco Display 18"
+
+# Vim bindings for movements
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -45,46 +60,76 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
+
 bindsym $mod+Shift+v split h;exec notify-send 'split horizontally'
 bindsym $mod+v split v;exec notify-send 'split vertically'
 bindsym $mod+f fullscreen toggle
-bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-bindsym $mod+Shift+space floating toggle
-bindsym $mod+space focus mode_toggle
+bindsym $mod+s layout toggle split
 bindsym $mod+a focus parent
-set $workspace1 "1: "
-set $workspace2 "2: "
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
-bindsym $mod+Shift+1 move container to workspace $workspace1
-bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+
+bindsym $mod+Shift+space floating toggle
+floating_modifier $mod
+
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+r mode "resize"
-bindsym $mod+shift+x exec i3lock --color "$base01"
+
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
-bindsym $mod+Shift+Return exec /usr/local/bin/vimb
 
+bindsym $mod+shift+x exec i3lock -f -i $wallpaper
+
+########################
+# Workspace management
+########################
+set $workspace1 "1:  "
+set $workspace2 "2:  "
+set $workspace3 "3:  "
+set $workspace4 "4:  "
+set $workspace5 "5:  "
+set $workspace6 "6:  "
+set $workspace7 "7:  "
+set $workspace8 "8:  "
+set $workspace9 "9:  "
+set $workspace10 "10: "
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+set $mode_move Move workspace: (L)eft, (Right)
+mode "$mode_move" {
+        bindsym l move workspace to output left
+        bindsym r move workspace to output right
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+m mode "$mode_move"
+bindsym $mod+x move workspace to output right
+bindsym $mod+y move workspace to output left
+workspace_auto_back_and_forth yes
+
+########################
+# Resize
+########################
 mode "resize" {
         bindsym h resize shrink width 5 px or 5 ppt
         bindsym j resize grow height 5 px or 5 ppt
@@ -98,11 +143,14 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-
+########################
+# Bar
+########################
 bar {
-  status_command i3blocks
-  tray_output primary
-  strip_workspace_numbers yes
+  status_command i3blocks -c ~/.config/i3/i3blocks.conf
+  tray_output VGA-1
+  tray_padding 3
+  font pango: System San Francisco Display 13px
   colors {
     separator $base03
     background $base01
@@ -116,10 +164,31 @@ bar {
   }
 }
 
+########################
+# Application management
+########################
+assign [class="Evolution"]      $workspace4
+assign [class="KeePass"]        $workspace8
+assign [class="skypeforlinux"]  $workspace9
 
-for_window [class="Lxappearance"] floating enable
-assign [class="Thunderbird"] $workspace3
+for_window [class="Lxappearance"]           floating enable
+for_window [class="skypeforlinux"]          floating enable
+for_window [class="KeePass"]                floating enable
+for_window [class="Evince"]                 floating enable
+for_window [class="Eog"]                    floating enable
+for_window [class="Arandr"]                 floating enable
+for_window [title="Preferences$"]           floating enable
+for_window [window_role="^conversation$"]   floating enable
+for_window [window_role="messages"]         floating enable
+for_window [window_role="pop-up"]           floating enable
+for_window [window_role="task_dialog"]      floating enable
+for_window [window_role="pop-up"]           floating enable
+for_window [window_role="task_dialog"]      floating enable
 
-exec_always feh --bg-scale /media/sf_flo/Pictures/Wallpaper/big_937f11d333132439490ad1246526273aa474e748.jpg
-exec_always --no-startup-id unclutter
-exec_always compton -f
+########################
+# Autostart
+########################
+exec_always --no-startup-id feh --no-fehbg --bg-scale $wallpaper
+exec_always --no-startup-id unclutter -keystroke -idle 3
+exec_always --no-startup-id compton -f
+exec --no-startup-id /usr/bin/evolution
