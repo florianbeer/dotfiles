@@ -228,7 +228,7 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 
 " Prettyprint for JSON, HTML & XML
-command! PrettyPrintJSON %!python -m json.tool
+command! PrettyPrintJSON %!jq '.'
 command! PrettyPrintHTML !tidy -mi -html -wrap 0 %
 command! PrettyPrintXML !tidy -mi -xml -wrap 0 %
 
