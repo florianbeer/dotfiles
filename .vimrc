@@ -27,6 +27,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'pbrisbin/vim-mkdir'
 Plugin 'posva/vim-vue'
 Plugin 'othree/html5.vim'
+Plugin 'gabrielelana/vim-markdown'
 if v:version >= 704
     if has('python')
         Plugin 'SirVer/ultisnips'
@@ -42,12 +43,11 @@ call vundle#end()
 " Colors
 syntax enable
 set background=dark
-colorscheme distinguished
-highlight vertsplit ctermbg=bg ctermfg=bg
-highlight StatusLine cterm=bold ctermfg=fg ctermbg=bg
-highlight StatusLineNC cterm=bold ctermfg=240 ctermbg=bg
-au InsertEnter * highlight StatusLine cterm=bold ctermfg=fg ctermbg=235
-au InsertLeave * highlight StatusLine cterm=bold ctermfg=fg ctermbg=bg
+colorscheme hemisu
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+au InsertEnter * highlight StatusLine cterm=bold ctermbg=235
+au InsertLeave * highlight StatusLine cterm=bold ctermbg=none
 
 " Editor Config
 set hidden
@@ -126,7 +126,7 @@ augroup configgroup
   au FileType css,scss,sass setlocal iskeyword+=-
   au FileType gitcommit startinsert
   au Filetype gitcommit setlocal spell textwidth=72
-  au BufNewFile,BufRead *.md set ft=markdown spell
+  au BufNewFile,BufRead *.md set ft=markdown
   au BufRead,BufNewFile *.blade.php set filetype=html
   au BufWritePost .vimrc source %
   au BufEnter *.js syn match ErrorMsg /console.log/
@@ -228,7 +228,7 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 
 " Prettyprint for JSON, HTML & XML
-command! PrettyPrintJSON %!jq '.'
+command! PrettyPrintJSON %!python -m json.tool
 command! PrettyPrintHTML !tidy -mi -html -wrap 0 %
 command! PrettyPrintXML !tidy -mi -xml -wrap 0 %
 
@@ -253,3 +253,7 @@ nnoremap <leader>d :call pdv#DocumentWithSnip()<CR>
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" Markdown
+let g:markdown_enable_spell_checking = 0
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'php', 'sql']
