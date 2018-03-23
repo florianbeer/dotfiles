@@ -41,7 +41,7 @@ else
 fi
 
 # Issue #36 compliant.
-if ! [ -e "/sys/class/net/${INTERFACE}/operstate" ] || ! [ "`cat /sys/class/net/${INTERFACE}/operstate`" = "up" ]
+if ! [ -e "/sys/class/net/${INTERFACE}/operstate" ] || [ "`cat /sys/class/net/${INTERFACE}/operstate`" = "down" ]
 then
     echo "$INTERFACE down"
     echo "$INTERFACE down"

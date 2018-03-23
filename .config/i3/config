@@ -2,10 +2,11 @@
 # Variables
 ########################
 set $mod Mod1
+set $sup Mod4
 
 set $base00 #101218
 set $base01 #1f222d
-set $base02 #252936
+set $base02 #3b4256
 set $base03 #7780a1
 set $base04 #C0C5CE
 set $base05 #d1d4e0
@@ -20,36 +21,50 @@ set $base0D #97bbf7
 set $base0E #c0b7f9
 set $base0F #fcc09e
 
-set $wallpaper ~/Documents/wallpaper.png
-
 ########################
 # Configuration
 ########################
-hide_edge_borders both
-new_window pixel 1
 new_float pixel 1
-font pango:System San Francisco Display 10
+new_window pixel 1
+mouse_warping none
+hide_edge_borders both
+force_display_urgency_hint 0 ms
+focus_on_window_activation urgent
+font pango:Cantarell 10
 
+########################
 # Widow Colours
+########################
 #                       border  background text    indicator
-client.focused          $base01 $base01    $base07 $base0F
-client.focused_inactive $base02 $base02    $base03 $base0F
-client.unfocused        $base02 $base02    $base03 $base0F
-client.urgent           $base02 $base08    $base00 $base0F
+client.focused          $base01 $base01    $base07 $base0D
+client.focused_inactive $base02 $base02    $base03 $base0D
+client.unfocused        $base02 $base02    $base03 $base0D
+client.urgent           $base02 $base0D    $base00 $base0D
 
 
 ########################
 # Keybindings
 ########################
+bindsym $mod+Shift+n exec /usr/bin/nautilus
 bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Shift+Return exec /usr/bin/firefox
-bindsym $mod+Shift+q kill
+bindsym $mod+q exec /usr/bin/autorandr --change
+bindsym $mod+Shift+Return exec /usr/bin/google-chrome
+bindsym $sup+r exec --no-startup-id pgrep redshift-gtk > /dev/null && killall redshift-gtk || redshift-gtk &
 
-# Show all windows
-bindsym Mod1+Tab exec rofi -show window -lines 10 -eh 2 -width 100 -padding 450 -opacity "85" -bw 0 -bc "$base01" -bg "$base01" -fg "$base07" -hlbg "$base02" -hlfg "#9575cd" -font "System San Francisco Display 18"
+# Audio
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% && pkill -RTMIN+1 i3blocks
 
-# Open applications with ALT+Space (OS X spotlight muscle memory)
-bindsym $mod+space exec rofi -show run -lines 5 -eh 2 -width 100 -padding 450 -opacity 85 -bw 10 -bc "$base01" -bg "$base01" -fg "$base07" -hlbg "$base04" -hlfg "$base01" -font "System San Francisco Display 18"
+# Sreen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo brightlight -i 15
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo brightlight -d 15
+
+# Screenshot whole screen
+bindsym Print exec scrot $HOME/Pictures/screenshots/Screenshot_`date +%Y-%m-%d_%H.%M.%S`.png && exec notify-send -u low -i image-x-generic 'Screenshot saved'
+
+# Screenshot part of screen
+bindsym --release Shift+Print exec --no-startup-id import $HOME/Pictures/screenshots/Screenshot_`date +%Y-%m-%d_%H.%M.%S`.png  && exec notify-send -i image-x-generic 'Screenshot saved'
 
 # Vim bindings for movements
 bindsym $mod+h focus left
@@ -61,38 +76,52 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-bindsym $mod+Shift+v split h;exec notify-send 'split horizontally'
-bindsym $mod+v split v;exec notify-send 'split vertically'
+# Container management
+bindsym $mod+v split v
+bindsym $mod+Shift+v split h
 bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle global
+bindsym $mod+e layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+s layout toggle split
 bindsym $mod+a focus parent
-
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+s sticky toggle
+bindsym $mod+Shift+w fullscreen disable; floating enable; resize set 422 240; sticky enable; move position 1498 2
 bindsym $mod+Shift+space floating toggle
-floating_modifier $mod
-
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
-
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
+floating_modifier $mod
 
-bindsym $mod+shift+x exec i3lock -f -i $wallpaper
+# i3 management
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $sup+l exec i3exit lock
+bindsym $mod+p exec ~/bin/shutdown_menu
 
 ########################
 # Workspace management
 ########################
-set $workspace1 "1:  "
-set $workspace2 "2:  "
-set $workspace3 "3:  "
-set $workspace4 "4:  "
-set $workspace5 "5:  "
-set $workspace6 "6:  "
-set $workspace7 "7:  "
-set $workspace8 "8:  "
-set $workspace9 "9:  "
-set $workspace10 "10: "
+set $workspace1   "1:  "
+set $workspace2   "2:  "
+set $workspace3   "3:  "
+set $workspace4   "4:  "
+set $workspace5   "5:  "
+set $workspace6   "6:  "
+set $workspace7   "7:  "
+set $workspace8   "8:  "
+set $workspace9   "9:  "
+set $workspace10 "10:  "
+set $workspace11 "11:  "
+set $workspace12 "12:  "
+set $workspace13 "13:  "
+set $workspace14 "14:  "
+set $workspace15 "15:  "
+set $workspace16 "16:  "
+set $workspace17 "17:  "
+set $workspace18 "18:  "
+set $workspace19 "19:  "
+set $workspace20 "20:  "
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
@@ -101,8 +130,18 @@ bindsym $mod+5 workspace $workspace5
 bindsym $mod+6 workspace $workspace6
 bindsym $mod+7 workspace $workspace7
 bindsym $mod+8 workspace $workspace8
-bindsym $mod+9 workspace $workspace9
+bindsym $mod+9 workspace $workspace9; layout tabbed
 bindsym $mod+0 workspace $workspace10
+bindsym $sup+1 workspace $workspace11
+bindsym $sup+2 workspace $workspace12
+bindsym $sup+3 workspace $workspace13
+bindsym $sup+4 workspace $workspace14
+bindsym $sup+5 workspace $workspace15
+bindsym $sup+6 workspace $workspace16
+bindsym $sup+7 workspace $workspace17
+bindsym $sup+8 workspace $workspace18
+bindsym $sup+9 workspace $workspace19
+bindsym $sup+0 workspace $workspace20
 bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
@@ -113,34 +152,38 @@ bindsym $mod+Shift+7 move container to workspace $workspace7
 bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
+bindsym $sup+Shift+1 move container to workspace $workspace11
+bindsym $sup+Shift+2 move container to workspace $workspace12
+bindsym $sup+Shift+3 move container to workspace $workspace13
+bindsym $sup+Shift+4 move container to workspace $workspace14
+bindsym $sup+Shift+5 move container to workspace $workspace15
+bindsym $sup+Shift+6 move container to workspace $workspace16
+bindsym $sup+Shift+7 move container to workspace $workspace17
+bindsym $sup+Shift+8 move container to workspace $workspace18
+bindsym $sup+Shift+9 move container to workspace $workspace19
+bindsym $sup+Shift+0 move container to workspace $workspace20
 
-set $mode_move Move workspace: (L)eft, (Right)
-mode "$mode_move" {
-        bindsym l move workspace to output left
-        bindsym r move workspace to output right
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-bindsym $mod+m mode "$mode_move"
+workspace_auto_back_and_forth yes
+bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+x move workspace to output right
 bindsym $mod+y move workspace to output left
-workspace_auto_back_and_forth yes
+bindsym $mod+d [urgent=latest] focus
+bindsym $mod+c move position center
 
 ########################
 # Resize
 ########################
 mode "resize" {
-        bindsym h resize shrink width 5 px or 5 ppt
-        bindsym j resize grow height 5 px or 5 ppt
-        bindsym k resize shrink height 5 px or 5 ppt
-        bindsym l resize grow width 5 px or 5 ppt
-        bindsym Left resize shrink width 5 px or 5 ppt
-        bindsym Down resize grow height 5 px or 5 ppt
-        bindsym Up resize shrink height 5 px or 5 ppt
-        bindsym Right resize grow width 5 px or 5 ppt
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+    bindsym h resize shrink width 5 px or 5 ppt
+    bindsym j resize grow height 5 px or 5 ppt
+    bindsym k resize shrink height 5 px or 5 ppt
+    bindsym l resize grow width 5 px or 5 ppt
+    bindsym Left resize shrink width 5 px or 5 ppt
+    bindsym Down resize grow height 5 px or 5 ppt
+    bindsym Up resize shrink height 5 px or 5 ppt
+    bindsym Right resize grow width 5 px or 5 ppt
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
 
@@ -148,51 +191,83 @@ bindsym $mod+r mode "resize"
 # Bar
 ########################
 bar {
-  status_command i3blocks -c ~/.config/i3/i3blocks.conf
-  tray_output VGA-1
-  tray_padding 3
-  font pango: System San Francisco Display 13px
-  colors {
-    separator $base03
-    background $base01
-    statusline $base05
+    status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
+    tray_output DP-1-2
+    tray_output eDP-1
+    tray_padding 3
+    colors {
+        separator $base02
+        background $base01
+        statusline $base05
 
-#                      border  background text
-    focused_workspace  $base01 $base01    $base07
-    active_workspace   $base01 $base02    $base03
-    inactive_workspace $base01 $base01    $base03
-    urgent_workspace   $base01 $base01    $base08
-  }
+#                           border  background text
+        focused_workspace  $base01 $base01    $base07
+        active_workspace   $base01 $base01    $base03
+        inactive_workspace $base01 $base01    $base03
+        urgent_workspace   $base01 $base01    $base0D
+    }
 }
+
+# Toggle between hide state and show state
+bindsym $mod+b bar hidden_state toggle
+# Toggle between dock mode and hide mode
+bindsym $mod+Shift+b bar mode toggle
 
 ########################
 # Application management
 ########################
 assign [class="Evolution"]      $workspace4
-assign [class="KeePass"]        $workspace8
-assign [class="skypeforlinux"]  $workspace9
-assign [class="Franz"]  $workspace9
+assign [class="Remmina"]        $workspace6
+assign [class="Skype"]          $workspace9
+assign [class="Slack"]          $workspace9
 
-for_window [class="Lxappearance"]           floating enable
-for_window [class="skypeforlinux"]          floating enable
-for_window [class="Franz"]                  floating enable
-for_window [class="Nautilus"]               floating enable
-for_window [class="KeePass"]                floating enable
-for_window [class="Evince"]                 floating enable
-for_window [class="Eog"]                    floating enable
-for_window [class="Arandr"]                 floating enable
-for_window [title="Preferences$"]           floating enable
-for_window [window_role="^conversation$"]   floating enable
-for_window [window_role="messages"]         floating enable
-for_window [window_role="pop-up"]           floating enable
-for_window [window_role="task_dialog"]      floating enable
-for_window [window_role="pop-up"]           floating enable
-for_window [window_role="task_dialog"]      floating enable
+for_window [class="Lxappearance"]                               floating enable
+for_window [class="Eog"]                                        floating enable
+for_window [title="feh"]                                        floating enable
+for_window [title="mpv"]                                        floating enable
+for_window [class="Arandr"]                                     floating enable
+for_window [class="Pavucontrol"]                                floating enable
+for_window [class="Vinagre"]                                    floating enable
+for_window [class="Nautilus"]                                   floating enable
+for_window [class="Gnome-calendar"]                             floating enable
+for_window [class="Gnome-software"]                             floating enable
+for_window [class="Gnome-disks"]                                floating enable
+for_window [class="gnome-font-viewer"]                          floating enable
+for_window [class="System-config-printer.py"]                   floating enable
+for_window [title="Remmina Remote Desktop Client"]              floating enable
+for_window [title="Preferences$"]                               floating enable
+for_window [title="Compose Message"]                            floating enable
+for_window [title="Meeting"]                                    floating enable
+for_window [title="Appointment"]                                floating enable
+for_window [title="Task"]                                       floating enable
+for_window [window_role="bubble"]                               floating enable
+for_window [window_role="^conversation$"]                       floating enable
+for_window [window_role="EMsgComposer.*"]                       floating enable
+for_window [window_role="messages"]                             floating enable
+for_window [window_role="pop-up"]                               floating enable
+for_window [window_role="task_dialog"]                          floating enable
+for_window [window_type="dialog"]                               floating enable
+for_window [window_type="menu"]                                 floating enable
+for_window [class="(?i)gsimplecal"]                             floating enable, move position mouse, move down -22px
+for_window [class="keepassxc"]                                  floating enable, border normal, move scratchpad, scratchpad show
 
 ########################
 # Autostart
 ########################
-exec_always --no-startup-id feh --no-fehbg --bg-scale $wallpaper
-exec_always --no-startup-id unclutter -keystroke -idle 3
-exec_always --no-startup-id compton -f
+exec --no-startup-id /usr/bin/feh --no-fehbg --bg-fill $HOME/Pictures/wallpaper/nebula.png
+exec --no-startup-id /usr/bin/compton --config ~/.config/compton.conf
+exec --no-startup-id $HOME/bin/kbd
+exec --no-startup-id $HOME/bin/set_mouse_natural_scrolling.sh
 exec --no-startup-id /usr/bin/evolution
+exec --no-startup-id /usr/bin/skypeforlinux
+exec --no-startup-id $HOME/bin/skypepriv
+exec --no-startup-id /usr/bin/slack
+exec --no-startup-id /usr/bin/nm-applet
+exec --no-startup-id /usr/bin/blueman-applet
+exec --no-startup-id /usr/bin/remmina -i
+exec --no-startup-id /usr/bin/nextcloud
+exec --no-startup-id /usr/bin/numlockx
+exec_always --no-startup-id /usr/bin/autorandr
+exec_always --no-startup-id /usr/bin/xautolock -time 3 -detectsleep -locker "i3exit lock"
+exec_always --no-startup-id /usr/lib/notification-daemon/notification-daemon &
+exec_always --no-startup-id QT_SCALE_FACTOR=1 /usr/bin/albert

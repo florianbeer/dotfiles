@@ -12,7 +12,7 @@ use utf8;
 use Getopt::Long;
 
 # default values
-my $t_warn = 50;
+my $t_warn = 65;
 my $t_crit = 80;
 my $cpu_usage = -1;
 my $decimals = 2;
@@ -53,7 +53,7 @@ if ($cpu_usage >= $t_crit) {
     print "#FF0000\n";
     exit 33;
 } elsif ($cpu_usage >= $t_warn) {
-    print "#FFFC00\n";
+    print "#FCC09E\n";
 }
 
 exit 0;
