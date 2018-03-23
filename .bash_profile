@@ -22,7 +22,7 @@ umask 0022
 # PATH
 # ----------------------------------------------------------------------------
 
-CDPATH=.:$HOME/Sites
+CDPATH=.:$HOME/Documents
 
 # we want the various sbins on the path along with /usr/local/bin
 PATH="/usr/local/bin:/usr/local/sbin:/usr/sbin:$PATH"
@@ -108,7 +108,7 @@ fi
 # ----------------------------------------------------------------------
 
 # color grep and less
-export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+alias='grep --color=auto'
 export LESS=-R
 
 # Detect which 'ls' flavor is in use
@@ -143,7 +143,7 @@ if [ "$TERM" != dumb ] && [ -n "$GRC" ]
     then
         alias colourify="$GRC -es --colour=auto"
         alias configure='colourify ./configure' 
-        for app in {diff,make,gcc,g++,mtr,traceroute,netstat,traceroute,head,tail,dig,mount,ps,mtr,df}; do
+        for app in {diff,make,gcc,g++,mtr,netstat,traceroute,head,tail,dig,mount,ps,mtr,df}; do
             alias "$app"='colourify '$app
         done
 fi
@@ -153,6 +153,10 @@ fi
 # ----------------------------------------------------------------------------
 
 alias gd='git diff --color | sed -E "s/^([^-+ ]*)[-+ ]/\\1/"'
+
+sysvnc() {
+    x11vnc -connect sysops-tv$1.intern:5500
+}
 
 # display external IP address
 myip() {
@@ -183,6 +187,11 @@ function raffle() {
 # get random BOFH excuse
 function bofh() {
     telnet towel.blinkenlights.nl 666
+}
+
+# ping with timestamp
+pingt() {
+    while :;do ping -n -w1 -W1 -c1 $1| grep -E "rtt|100%"| sed -e "s/^/`date` /g"; sleep 1; done
 }
 
 # ----------------------------------------------------------------------------
@@ -223,6 +232,8 @@ if [ "$(uname)" == "Darwin" ]; then
     cd -
   }
 
+else
+    alias pbcopy='xsel --clipboard --input'
 fi
 
-ulimit -n 2560
+alias open=gvfs-open
