@@ -1,7 +1,6 @@
 [core]
     quotepath = false
     excludesfile = ~/.gitignore
-    pager=cat
 [color]
     ui = auto
 [color "branch"]
@@ -40,7 +39,7 @@
     unhide = update-index --no-assume-unchanged
     fix = "!f() { ${EDITOR} `git diff --name-only`; }; f"
     branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
-    lg = log --pretty=tformat:'%Cred%h%Creset -%Cblue%d%Creset %s %Cgreen(%cr)%Creset %C(yellow)<%an>%Creset' --abbrev-commit --date=relative --reverse
+    lg = !git --no-pager log --pretty=tformat:'%Cred%h%Creset -%Cblue%d%Creset %s %Cgreen(%cr)%Creset %C(yellow)<%an>%Creset' --abbrev-commit --date=relative --reverse
 [push]
     default = tracking
 [branch]
